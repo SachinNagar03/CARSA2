@@ -1,0 +1,258 @@
+
+/* =========================================
+   SHOP CTA SECTION
+========================================= */
+
+.shop-cta {
+  padding: 96px 0;
+}
+
+.shop-cta-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* =========================================
+   CTA CARD
+========================================= */
+
+.shop-cta-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  align-items: center;
+  gap: 40px;
+  overflow: hidden;
+  padding: 80px 56px;
+  border: 1px solid #e7e0d3;
+  background: #fcfbf9;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.shop-cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+.shop-cta-eyebrow {
+  margin: 0;
+  color: #8f6e28;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.shop-cta-title {
+  margin: 24px 0 0;
+  color: #171717;
+  font-family: var(--font-display);
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.shop-cta-gold-text {
+  background: linear-gradient(
+    120deg,
+    #9a7735,
+    #d0b16e,
+    #8f6e28
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.shop-cta-description {
+  max-width: 440px;
+  margin: 24px 0 0;
+  color: #66615b;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.shop-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+  padding: 20px 32px;
+  background: #171717;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.shop-cta-button:hover {
+  background: #8f6e28;
+}
+
+.shop-cta-button-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.shop-cta-button:hover .shop-cta-button-icon {
+  transform: translateX(4px);
+}
+
+/* =========================================
+   PRODUCT VISUAL
+========================================= */
+
+.shop-cta-visual {
+  position: relative;
+  display: block;
+  min-height: 22rem;
+  height: 100%;
+}
+
+/* Circular background */
+.shop-cta-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f4ede2;
+  transform: translate(-50%, -50%);
+}
+
+/* Image wrapper */
+.shop-cta-image-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: shopCtaFloat 5s ease-in-out infinite;
+}
+
+/* Product image */
+.shop-cta-bottle {
+  display: block;
+  width: 125%;
+  height: 125%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(
+    0 12px 15px rgba(65, 48, 25, 0.18)
+  );
+}
+
+/* =========================================
+   FLOATING ANIMATION
+========================================= */
+
+@keyframes shopCtaFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* =========================================
+   TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 1023px) {
+  .shop-cta {
+    padding: 96px 0;
+  }
+
+  .shop-cta-card {
+    grid-template-columns: 1fr;
+    padding: 64px 48px;
+  }
+
+  .shop-cta-title {
+    font-size: 48px;
+  }
+
+  .shop-cta-visual {
+    display: none;
+  }
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 640px) {
+  .shop-cta {
+    padding: 64px 0;
+  }
+
+  .shop-cta-container {
+    padding: 0 16px;
+  }
+
+  .shop-cta-card {
+    padding: 48px 28px;
+    gap: 32px;
+  }
+
+  .shop-cta-title {
+    margin-top: 20px;
+    font-size: 38px;
+  }
+
+  .shop-cta-description {
+    font-size: 14px;
+  }
+
+  .shop-cta-button {
+    margin-top: 32px;
+    padding: 18px 22px;
+    font-size: 10px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .shop-cta-image-wrapper {
+    animation: none;
+  }
+
+  .shop-cta-button,
+  .shop-cta-button-icon {
+    transition: none;
+  }
+}
