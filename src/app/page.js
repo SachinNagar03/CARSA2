@@ -1,6 +1,6 @@
 // app/page.jsx
 import { Navbar } from "../components/Navbar";
-import { Hero } from "../components/Hero";
+import  Hero  from "../components/Hero";
 import { Marquee } from "../components/Marquee";
 import { Collection } from "../components/Collection";
 import { Ritual } from "../components/Ritual";

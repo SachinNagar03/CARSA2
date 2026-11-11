@@ -1,11 +1,12 @@
-// components/Navbar.jsx
+
 "use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingBag, Menu, X } from "lucide-react";
+import { Menu, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import styles from "./Navbar.module.css";
 
 const links = [
   { href: "#collection", label: "Collection" },
@@ -14,100 +15,135 @@ const links = [
   { href: "#reviews", label: "Reviews" },
 ];
 
+const cx = (...classes) => classes.filter(Boolean).join(" ");
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  // Keep your existing cart functionality
   const { totalCount, setIsOpen } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
+
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Solid navbar when scrolled or mobile menu is open
+  const solid = scrolled || open;
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 bg-[#faf8f5]/90 backdrop-blur-md ${
-        scrolled ? "border-b border-[#e7e0d3] py-3" : "border-b border-transparent py-5"
-      }`}
+      className={cx(
+        styles.header,
+        solid ? styles.solid : styles.clear
+      )}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-10">
-        <Link href="#top" className="flex items-center gap-3">
+      <nav className={styles.nav}>
+        {/* Brand */}
+        <Link
+          href="#top"
+          className={styles.brand}
+          aria-label="CARसा home"
+        >
           <Image
-            src="/images/carsa_logo.png"
+            src={
+              solid
+                ? "/images/carsa-logo-ink.png"
+                : "/images/carsa-logo-ivory.png"
+            }
             alt="CARसा Fragrances"
             width={120}
             height={48}
-            className={`w-auto transition-all duration-500 ${scrolled ? "h-10" : "h-12"}`}
             priority
+            className={styles.logo}
           />
-          <span className="eyebrow hidden text-neutral-500 sm:block">Fragrances</span>
+
+          <span className={styles.brandTag}>Fragrances</span>
         </Link>
 
-        <ul className="hidden items-center gap-10 md:flex">
+        {/* Desktop Navigation */}
+        <ul className={styles.links}>
           {links.map((l) => (
             <li key={l.href}>
-              <a
-                href={l.href}
-                className="eyebrow group relative text-neutral-800 transition-colors hover:text-[#b38b36]"
-              >
+              <a href={l.href} className={styles.link}>
                 {l.label}
-                <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-[#b38b36] transition-all duration-300 group-hover:w-full" />
+                <span className={styles.underline} />
               </a>
             </li>
           ))}
         </ul>
 
-        <div className="flex items-center gap-4">
-          <a
-            href="#collection"
-            className="eyebrow hidden border border-neutral-900 px-5 py-3 text-neutral-900 transition-all duration-300 hover:bg-neutral-900 hover:text-white sm:inline-block"
-          >
+        {/* Actions */}
+        <div className={styles.actions}>
+          <a href="#collection" className={styles.shop}>
             Shop Now
           </a>
 
+          {/* Existing Cart Integration */}
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="relative p-2 text-neutral-900 hover:text-[#b38b36] transition-colors"
-            aria-label="Open Cart"
+            className={styles.iconBtn}
+            aria-label={`Open cart, ${totalCount} item${
+              totalCount === 1 ? "" : "s"
+            }`}
           >
-            <ShoppingBag className="h-5 w-5" strokeWidth={1.25} />
+            <ShoppingBag
+              className={styles.icon}
+              strokeWidth={1.25}
+            />
+
             {totalCount > 0 && (
-              <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#b38b36] px-1 text-[10px] font-medium text-white">
+              <span className={styles.badge}>
                 {totalCount}
               </span>
             )}
           </button>
 
+          {/* Mobile Menu Toggle */}
           <button
             type="button"
-            className="p-2 md:hidden text-neutral-900"
-            onClick={() => setOpen(!open)}
+            className={cx(styles.iconBtn, styles.menuBtn)}
+            onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {open ? (
+              <X className={styles.icon} strokeWidth={1.25} />
+            ) : (
+              <Menu className={styles.icon} strokeWidth={1.25} />
+            )}
           </button>
         </div>
       </nav>
 
-      {open && (
-        <div className="border-b border-[#e7e0d3] bg-[#faf8f5] px-6 pb-8 pt-4 md:hidden">
-          <ul className="flex flex-col gap-5">
-            {[...links, { href: "#collection", label: "Shop Now" }].map((l) => (
-              <li key={l.href}>
+      {/* Mobile Navigation */}
+      <div
+        className={cx(
+          styles.mobile,
+          open && styles.mobileOpen
+        )}
+      >
+        <ul className={styles.mobileList}>
+          {[...links, { href: "#collection", label: "Shop Now" }].map(
+            (l, index) => (
+              <li key={`${l.href}-${index}`}>
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="font-display text-2xl text-neutral-900 hover:text-[#b38b36]"
+                  className={styles.mobileLink}
                 >
                   {l.label}
                 </a>
               </li>
-            ))}
-          </ul>
-        </div>
-      )}
+            )
+          )}
+        </ul>
+      </div>
     </header>
   );
 }

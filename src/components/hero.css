@@ -1,418 +1,496 @@
 
-/* ========================================
-   HERO SECTION
-======================================== */
+/* ==========================================================================
+   CARसा Luxury Hero Styles
+   Refined Typography — Desktop Optimized
+   ========================================================================== */
 
-.hero {
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+:root {
+  --carsa-royal-950: #070d18;
+  --carsa-royal-900: #0f192b;
+  --carsa-royal-800: #131f36;
+  --carsa-royal-700: #16243f;
+  --carsa-royal-600: #1f3258;
+  --carsa-royal-foreground: #f7f5ed;
+  --carsa-royal-muted: #bcc5d5;
+  --carsa-gold: #c59e47;
+  --carsa-gold-pale: #edd899;
+  --carsa-gold-deep: #9a7830;
+  --carsa-font-display: 'Playfair Display', Georgia, serif;
+  --carsa-font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Base Section */
+
+.carsa-hero {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
-  padding-top: 112px;
-  background: #fff;
+  background-color: var(--carsa-royal-950);
+  padding-top: 7rem;
+  color: var(--carsa-royal-foreground);
+  font-family: var(--carsa-font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-.hero-bg-decoration {
-  position: absolute;
-  top: 96px;
-  right: -160px;
-  width: 700px;
-  height: 700px;
-  border-radius: 50%;
-  background: #f4ede2;
-  opacity: 0.8;
-  filter: blur(60px);
+@media (min-width: 1024px) {
+  .carsa-hero {
+    padding-top: 7rem;
+  }
+}
+
+/* Background Layers */
+
+.carsa-hero-bg-marble {
   pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.75;
 }
 
-/* ========================================
-   MAIN CONTAINER
-======================================== */
+.carsa-hero-scrim-vertical {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  background: linear-gradient(
+    to bottom,
+    rgba(7, 13, 24, 0.92) 0%,
+    rgba(15, 25, 43, 0.55) 50%,
+    rgba(7, 13, 24, 0.96) 100%
+  );
+}
 
-.hero-container {
+.carsa-hero-scrim-horizontal {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 13, 24, 0.94) 0%,
+    rgba(7, 13, 24, 0.8) 38%,
+    rgba(7, 13, 24, 0.2) 72%,
+    rgba(7, 13, 24, 0.6) 100%
+  );
+}
+
+/* Main Layout Grid */
+
+.carsa-hero-container {
   position: relative;
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 40px 112px;
-
+  max-width: 80rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 5rem;
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
   align-items: center;
-  gap: 32px;
+  gap: 3rem;
 }
 
-/* ========================================
-   LEFT CONTENT
-======================================== */
-
-.hero-content {
-  grid-column: span 7;
+@media (min-width: 1024px) {
+  .carsa-hero-container {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 2rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-bottom: 5rem;
+  }
 }
 
-.hero-eyebrow {
+/* Left Copy Column */
+
+@media (min-width: 1024px) {
+  .carsa-hero-copy {
+    grid-column: span 7 / span 7;
+  }
+}
+
+/* Typography Helpers */
+
+.carsa-eyebrow {
+  font-family: var(--carsa-font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.carsa-hero-eyebrow {
   display: flex;
   align-items: center;
-  gap: 16px;
-
-  color: #8f6e28;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  gap: 1rem;
+  color: var(--carsa-gold-pale);
 }
 
-.hero-eyebrow-line {
-  display: block;
-  width: 40px;
+.carsa-hero-eyebrow-line {
+  display: inline-block;
   height: 1px;
-  background: #b38b36;
+  width: 2.5rem;
+  background-color: var(--carsa-gold);
 }
 
-/* ========================================
-   HEADING
-======================================== */
-
-.hero-title {
-  margin-top: 32px;
-
-  color: #171717;
-  font-size: 5.75rem;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -2px;
+.carsa-text-gold {
+  color: var(--carsa-gold);
 }
 
-.hero-title em {
+/* Main Heading */
+
+.carsa-hero-title {
+  font-family: var(--carsa-font-display);
+  margin: 1.5rem 0 0 0;
+  font-size: 3rem;
   font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--carsa-royal-foreground);
+}
+
+@media (min-width: 640px) {
+  .carsa-hero-title {
+    font-size: 3.8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carsa-hero-title {
+    font-size: 4.25rem;
+    line-height: 1.02;
+  }
+}
+
+@media (min-width: 1440px) {
+  .carsa-hero-title {
+    font-size: 4.75rem;
+  }
+}
+
+.carsa-hero-title em {
   font-style: italic;
+  font-weight: 400;
 }
 
-.hero-gold-text {
+/* Gold Gradient */
+
+.carsa-text-gold-gradient {
   background: linear-gradient(
     120deg,
-    #8f6e28,
-    #d0ad5e,
-    #a47d2e
+    #9a7830 0%,
+    #edd899 50%,
+    #c59e47 100%
   );
-
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
-/* ========================================
-   DESCRIPTION
-======================================== */
+/* Description */
 
-.hero-description {
-  max-width: 448px;
-  margin-top: 32px;
-
-  color: #666;
-  font-size: 18px;
-  line-height: 1.7;
+.carsa-hero-desc {
+  margin: 1.5rem 0 0 0;
+  max-width: 26rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--carsa-royal-muted);
 }
 
-/* ========================================
-   BUTTONS
-======================================== */
+@media (min-width: 640px) {
+  .carsa-hero-desc {
+    font-size: 1rem;
+  }
+}
 
-.hero-buttons {
+@media (min-width: 1024px) {
+  .carsa-hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+}
+
+/* Action Buttons */
+
+.carsa-hero-actions {
+  margin-top: 2rem;
   display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 40px;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.hero-btn {
+@media (min-width: 640px) {
+  .carsa-hero-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.carsa-btn {
+  font-family: var(--carsa-font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-
-  padding: 20px 32px;
-
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-
-  text-decoration: none;
-  transition: all 0.3s ease;
+  gap: 0.75rem;
+  padding: 1rem 1.75rem;
+  transition: all 0.5s ease;
+  cursor: pointer;
 }
 
-.hero-btn-primary {
-  background: #171717;
-  color: #fff;
+.carsa-btn-primary {
+  background-color: var(--carsa-gold);
+  color: var(--carsa-royal-950);
+  border: 1px solid var(--carsa-gold);
 }
 
-.hero-btn-primary:hover {
-  background: #8f6e28;
+.carsa-btn-primary:hover {
+  background-color: var(--carsa-gold-pale);
+  border-color: var(--carsa-gold-pale);
 }
 
-.hero-btn-secondary {
-  border: 1px solid #e7e0d3;
-  color: #171717;
+.carsa-btn-arrow {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.5s ease;
 }
 
-.hero-btn-secondary:hover {
-  border-color: #171717;
+.carsa-btn-primary:hover .carsa-btn-arrow {
+  transform: translateX(4px);
 }
 
-/* ========================================
-   PRODUCT DETAILS
-======================================== */
+.carsa-btn-secondary {
+  border: 1px solid var(--carsa-royal-600);
+  color: var(--carsa-royal-foreground);
+  background: transparent;
+}
 
-.hero-details {
+.carsa-btn-secondary:hover {
+  border-color: var(--carsa-gold);
+  color: var(--carsa-gold-pale);
+}
+
+/* Specifications Counter List */
+
+.carsa-hero-specs {
+  margin: 3rem 0 0 0;
+  max-width: 32rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  max-width: 512px;
-  margin-top: 64px;
-
-  border-top: 1px solid #e7e0d3;
-  border-bottom: 1px solid #e7e0d3;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgba(31, 50, 88, 0.7);
+  border-bottom: 1px solid rgba(31, 50, 88, 0.7);
 }
 
-.hero-detail-item {
-  padding: 20px 16px;
-  border-right: 1px solid #e7e0d3;
+.carsa-spec-item {
+  padding: 1rem 1rem;
+  border-left: 1px solid rgba(31, 50, 88, 0.7);
 }
 
-.hero-detail-item:first-child {
+.carsa-spec-item:first-child {
+  border-left: none;
   padding-left: 0;
 }
 
-.hero-detail-item:last-child {
-  border-right: none;
+.carsa-spec-value {
+  font-family: var(--carsa-font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--carsa-royal-foreground);
 }
 
-.hero-detail-item dt {
-  color: #171717;
-  font-family: Georgia, serif;
-  font-size: 30px;
+.carsa-spec-label {
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  color: var(--carsa-royal-muted);
 }
 
-.hero-detail-item dd {
-  margin-top: 4px;
+/* Right Bottle Column */
 
-  color: #777;
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-/* ========================================
-   RIGHT PRODUCT SECTION
-======================================== */
-
-.hero-product {
+.carsa-hero-visual {
   position: relative;
-  grid-column: span 5;
 }
 
-.hero-product-frame {
+@media (min-width: 1024px) {
+  .carsa-hero-visual {
+    grid-column: span 5 / span 5;
+  }
+}
+
+.carsa-bottle-stage {
   position: relative;
-
-  width: 100%;
-  max-width: 448px;
-  aspect-ratio: 4 / 5;
-
   margin: 0 auto;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  max-width: 28rem;
 }
 
-/* ========================================
-   CHAMPAGNE ARCH
-======================================== */
+/* Arch Accents */
 
-.hero-champagne-arch {
+.carsa-arch-backdrop {
   position: absolute;
-  top: 40px;
-  right: 24px;
+  left: 1.5rem;
+  right: 1.5rem;
   bottom: 0;
-  left: 24px;
-
-  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
-
+  top: 2.5rem;
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
   background: linear-gradient(
-    145deg,
-    #f5ebd8,
-    #e9d8b9,
-    #f8f1e5
+    to bottom,
+    rgba(22, 36, 63, 0.7) 0%,
+    rgba(19, 31, 54, 0.45) 50%,
+    rgba(7, 13, 24, 0.1) 100%
   );
 }
 
-.hero-outer-border {
+.carsa-arch-border {
   position: absolute;
-  top: 16px;
+  left: 0;
   right: 0;
   bottom: 0;
-  left: 0;
-
-  border: 1px solid rgba(179, 139, 54, 0.4);
-  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  top: 1rem;
+  border-top-left-radius: 9999px;
+  border-top-right-radius: 9999px;
+  border: 1px solid rgba(197, 158, 71, 0.45);
 }
 
-.hero-inner-circle {
+.carsa-arch-ring {
   position: absolute;
-
+  left: 50%;
   top: 18%;
-  left: 50%;
-
-  width: 62%;
   height: 62%;
-
+  width: 62%;
   transform: translateX(-50%);
-
-  border: 1px solid rgba(179, 139, 54, 0.25);
-  border-radius: 50%;
+  border-radius: 9999px;
+  border: 1px solid rgba(197, 158, 71, 0.25);
 }
 
-/* ========================================
-   PRODUCT IMAGE
-======================================== */
+/* Bottle Image */
 
-.hero-image-clip {
+.carsa-bottle-img {
   position: absolute;
-  top: 40px;
-  right: 24px;
-  bottom: 0;
-  left: 24px;
-
-  z-index: 10;
-
-  overflow: hidden;
-  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
-}
-
-.hero-image-animation {
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  animation: heroFloat 5s ease-in-out infinite;
-}
-
-.hero-bottle {
-  display: block;
-
-  width: 100%;
-  height: 94%;
-
-  object-fit: contain;
-  object-position: center;
-
-  filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.15));
-}
-
-/* ========================================
-   FLOAT ANIMATION
-======================================== */
-
-@keyframes heroFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-12px);
-  }
-}
-
-/* ========================================
-   PRODUCT LABELS
-======================================== */
-
-.hero-signature-label {
-  position: absolute;
-  top: 38%;
-  left: -8px;
-
-  z-index: 20;
-
-  padding: 16px 20px;
-
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-}
-
-.hero-label-heading {
-  color: #999;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
-.hero-label-title {
-  margin-top: 4px;
-
-  color: #b38b36;
-  font-family: Georgia, serif;
-  font-size: 26px;
-  font-style: italic;
-}
-
-.hero-notes-label {
-  position: absolute;
-  right: -8px;
-  bottom: 16%;
-
-  z-index: 20;
-
-  padding: 16px 20px;
-
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-}
-
-.hero-notes-text {
-  margin-top: 4px;
-  color: #262626;
-  font-size: 13px;
-}
-
-/* ========================================
-   SCROLL INDICATOR
-======================================== */
-
-.hero-scroll {
-  position: absolute;
-  bottom: 24px;
+  bottom: 8%;
   left: 50%;
+  height: 82%;
+  width: auto;
+  transform: translateX(-50%);
+  object-fit: contain;
+  filter: drop-shadow(0 50px 40px rgba(197, 158, 71, 0.28));
+  animation: carsa-float 7s ease-in-out infinite;
+}
 
-  display: flex;
+/* Floating Note Chips */
+
+.carsa-chip {
+  position: absolute;
+  display: none;
+  border: 1px solid rgba(197, 158, 71, 0.25);
+  background: rgba(7, 13, 24, 0.75);
+  padding: 0.85rem 1rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+@media (min-width: 640px) {
+  .carsa-chip {
+    display: block;
+  }
+}
+
+.carsa-chip-left {
+  left: -0.5rem;
+  top: 38%;
+}
+
+@media (min-width: 1024px) {
+  .carsa-chip-left {
+    left: -2.5rem;
+  }
+}
+
+.carsa-chip-right {
+  right: -0.5rem;
+  bottom: 16%;
+}
+
+@media (min-width: 1024px) {
+  .carsa-chip-right {
+    right: -1.5rem;
+  }
+}
+
+.carsa-chip-kicker {
+  font-size: 0.7rem;
+  color: var(--carsa-royal-muted);
+}
+
+.carsa-chip-title {
+  font-family: var(--carsa-font-display);
+  margin: 0.25rem 0 0 0;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--carsa-gold-pale);
+}
+
+.carsa-chip-notes {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.8rem;
+  color: var(--carsa-royal-foreground);
+}
+
+/* Bottom Scroll Anchor */
+
+.carsa-hero-scroll {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-
-  transform: translateX(-50%);
-
-  color: #777;
-  font-size: 10px;
-  letter-spacing: 1.5px;
+  gap: 0.5rem;
+  color: var(--carsa-royal-muted);
   text-decoration: none;
-  text-transform: uppercase;
-
   transition: color 0.3s ease;
 }
 
-.hero-scroll:hover {
-  color: #171717;
+.carsa-hero-scroll:hover {
+  color: var(--carsa-gold-pale);
 }
 
-.hero-scroll-icon {
-  animation: heroBounce 1.5s infinite;
+@media (min-width: 1024px) {
+  .carsa-hero-scroll {
+    display: flex;
+  }
 }
 
-@keyframes heroBounce {
-  0%,
-  100% {
+.carsa-scroll-arrow {
+  animation: carsa-bounce 1.5s infinite;
+}
+
+/* Animations */
+
+@keyframes carsa-float {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+
+  50% {
+    transform: translate(-50%, -16px);
+  }
+}
+
+@keyframes carsa-bounce {
+  0%, 100% {
     transform: translateY(0);
   }
 
@@ -421,109 +499,9 @@
   }
 }
 
-/* ========================================
-   RESPONSIVE DESIGN
-======================================== */
-
-@media (max-width: 1024px) {
-
-  .hero-title {
-    font-size: 4.5rem;
+@media (prefers-reduced-motion: reduce) {
+  .carsa-bottle-img,
+  .carsa-scroll-arrow {
+    animation: none;
   }
-
-  .hero-container {
-    gap: 24px;
-  }
-
-  .hero-description {
-    font-size: 16px;
-  }
-
-}
-
-@media (max-width: 768px) {
-
-  .hero {
-    padding-top: 100px;
-  }
-
-  .hero-container {
-    grid-template-columns: 1fr;
-    gap: 48px;
-    padding: 0 24px 80px;
-  }
-
-  .hero-content,
-  .hero-product {
-    grid-column: span 1;
-  }
-
-  .hero-title {
-    font-size: clamp(3rem, 10vw, 4.5rem);
-    line-height: 1;
-  }
-
-  .hero-description {
-    font-size: 16px;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .hero-btn {
-    width: 100%;
-  }
-
-  .hero-details {
-    margin-top: 48px;
-  }
-
-  .hero-product-frame {
-    max-width: 420px;
-  }
-
-  .hero-signature-label {
-    left: -4px;
-  }
-
-  .hero-notes-label {
-    right: -4px;
-  }
-
-  .hero-scroll {
-    display: none;
-  }
-
-}
-
-@media (max-width: 480px) {
-
-  .hero-container {
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-
-  .hero-title {
-    font-size: 3rem;
-  }
-
-  .hero-detail-item {
-    padding: 16px 10px;
-  }
-
-  .hero-detail-item dt {
-    font-size: 24px;
-  }
-
-  .hero-detail-item dd {
-    font-size: 8px;
-    letter-spacing: 0.5px;
-  }
-
-  .hero-product-frame {
-    max-width: 100%;
-  }
-
 }
