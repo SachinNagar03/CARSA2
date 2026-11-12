@@ -39,9 +39,12 @@ export function Collection() {
           {scents.map((s) => (
             <article
               key={s.id}
-              className="group flex h-full flex-col border border-[#e7e0d3] bg-white transition-all duration-500 hover:-translate-y-1 hover:border-[#c5a66b] hover:shadow-[0_15px_40px_rgba(80,60,30,0.08)]"
+              className="group relative flex h-full flex-col overflow-hidden border border-[#e7e0d3] bg-white transition-all duration-500 ease-out hover:-translate-y-2 hover:border-[#c5a66b] hover:shadow-[0_20px_50px_rgba(80,60,30,0.12)]"
             >
-              {/* Image */}
+              {/* Top Gold Accent */}
+              <span className="absolute left-0 top-0 z-20 h-[2px] w-0 bg-gradient-to-r from-[#8f6e28] via-[#d8bd7c] to-[#8f6e28] transition-all duration-700 group-hover:w-full" />
+
+              {/* Product Image */}
               <div className="relative aspect-[5/4] overflow-hidden bg-[#faf8f5]">
 
                 <Image
@@ -49,37 +52,52 @@ export function Collection() {
                   alt={`CARसा ${s.name}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                 />
 
-                {/* Minimal Discount Tag */}
-                <span className="absolute left-3 top-3 border border-[#d8c49b] bg-[#faf8f5]/95 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] text-[#8f6e28]">
+                {/* Image Overlay */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#17130d]/10 via-transparent to-white/10 opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+
+                {/* Discount Tag */}
+                <span className="absolute left-3 top-3 border border-[#d8c49b] bg-[#faf8f5]/95 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] text-[#8f6e28] shadow-sm transition-all duration-300 group-hover:bg-[#8f6e28] group-hover:text-white">
                   30% OFF
                 </span>
 
+                {/* Fragrance Color */}
                 <span
-                  className={`absolute right-3 top-3 h-2.5 w-2.5 rounded-full ring-4 ring-white ${s.bgClass}`}
+                  className={`absolute right-3 top-3 h-2.5 w-2.5 rounded-full ring-4 ring-white shadow-sm ${s.bgClass}`}
                   aria-hidden="true"
                 />
+
+                {/* Bottom Image Label */}
+                <div className="absolute bottom-3 left-3">
+                  <span className="border border-white/40 bg-black/30 px-2.5 py-1 text-[9px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur-md">
+                    CARसा · Extrait
+                  </span>
+                </div>
               </div>
 
-              {/* Details */}
+              {/* Product Details */}
               <div className="flex flex-1 flex-col p-5">
 
+                {/* Name and Price */}
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h3
-                      className={`font-display text-2xl italic leading-tight ${s.textClass}`}
+                      className={`font-display text-2xl italic leading-tight transition-colors duration-300 group-hover:text-[#8f6e28] ${s.textClass}`}
                     >
                       {s.name}
                     </h3>
 
-                    <p className="mt-1 text-xs text-neutral-500">
+                    {/* Animated Gold Underline */}
+                    <span className="mt-2 block h-px w-7 bg-[#c5a66b] transition-all duration-500 group-hover:w-14" />
+
+                    <p className="mt-2 text-xs text-neutral-500">
                       {s.mood}
                     </p>
                   </div>
 
-                  {/* Minimal Pricing */}
+                  {/* Pricing */}
                   <div className="shrink-0 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <span className="text-xs text-neutral-400 line-through">
@@ -97,12 +115,13 @@ export function Collection() {
                   </div>
                 </div>
 
-                <p className="mt-3 text-xs text-neutral-700">
+                {/* Inspired By */}
+                <p className="mt-4 text-xs text-neutral-700">
                   <span className="text-neutral-400">Inspired by </span>
                   <span className="font-medium">{s.inspiredBy}</span>
                 </p>
 
-                {/* Notes */}
+                {/* Fragrance Notes */}
                 <div className="mt-4 border-t border-[#e7e0d3] pt-4">
                   <p className="text-[9px] font-medium uppercase tracking-[0.18em] text-neutral-400">
                     Key Notes
@@ -112,7 +131,7 @@ export function Collection() {
                     {s.notes.map((n) => (
                       <li
                         key={n}
-                        className="border border-[#e7e0d3] bg-[#faf8f5] px-2.5 py-1 text-[10px] text-neutral-700"
+                        className="border border-[#e7e0d3] bg-[#faf8f5] px-2.5 py-1 text-[10px] text-neutral-700 transition-all duration-300 hover:border-[#c5a66b] hover:bg-[#f5efdf] hover:text-[#8f6e28]"
                       >
                         {n}
                       </li>
@@ -120,8 +139,8 @@ export function Collection() {
                   </ul>
                 </div>
 
-                {/* Button */}
-                <div className="mt-auto pt-5">
+                {/* Add to Cart */}
+                <div className="mt-auto pt-6">
                   <button
                     type="button"
                     onClick={() =>
@@ -130,9 +149,13 @@ export function Collection() {
                         price: offerPrice,
                       })
                     }
-                    className="eyebrow w-full border border-neutral-900 bg-neutral-900 py-3.5 text-center text-white transition-all duration-300 hover:border-[#8f6e28] hover:bg-[#8f6e28]"
+                    className="eyebrow group/btn relative w-full overflow-hidden border border-neutral-900 bg-neutral-900 py-3.5 text-center text-white transition-all duration-500 hover:border-[#8f6e28] hover:text-white"
                   >
-                    Add to Cart · ₹{offerPrice}
+                    <span className="absolute inset-0 -translate-x-full bg-[#8f6e28] transition-transform duration-500 ease-out group-hover/btn:translate-x-0" />
+
+                    <span className="relative z-10">
+                      Add to Cart <span className="mx-1">·</span> ₹{offerPrice}
+                    </span>
                   </button>
                 </div>
 
